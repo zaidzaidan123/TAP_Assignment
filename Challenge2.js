@@ -1,27 +1,25 @@
-const majority = (arr, n) => {
-  let finalCount = 0;
-  let index = -1;
-
-  for (let i = 0; i < n; i++) {
-    let count = 0;
-    for (let j = 0; j < n; j++) {
-      if (arr[i] === arr[j]) {
-        count++;
+const majority = (arr,n) => {
+  let arr2 = [...new Set(arr)]
+  let count=0;
+  let finalCount=0;
+  let element=null;
+  for (let i = 0; i < arr2.length; i++){
+      count = arr.filter(item => item === arr2[i]).length;
+      
+      if(count > finalCount){
+        finalCount =count;
+        element=arr2[i]
       }
-    }
-    if (count > finalCount) {
-      finalCount = count;
-      index = i;
-    }
   }
-  if (finalCount > n / 2) {
-    return arr[index];
-  } else {
-    console.log("no majority number ");
-  }
-};
 
-const arr = [2, 2, 2, 2, 5, 5, 2, 3, 3];
+  if(finalCount > n/2){
+    return element
+  }
+ 
+}
+
+
+const arr = [2,2,1,1,1,2,2];
 let n = arr.length;
 
 console.log(majority(arr, n));
